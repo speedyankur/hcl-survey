@@ -15,7 +15,7 @@ import SurveyPage from './pages/SurveyPage';
 import { fetchCurrentUserRequest, fetchCurrentUserRequestSuccess, fetchCurrentUserRequestFail } from './actions/login';
 import { home } from './reducers/session';
 
-const skipAuthPaths = ['/login', '/register', '/logout'];
+const skipAuthPaths = ['/login', '/register', '/logout', '/surveys'];
 
 export default function routes(store) {
   function requireAuth(nextState, replace, next) {
