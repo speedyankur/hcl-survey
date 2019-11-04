@@ -1,13 +1,13 @@
 import newId from '../util/idGenerator';
 import axios from 'axios';
-import { hashHistory } from 'react-router';
 import decode from 'jwt-decode';
 
 const fetcher = axios.create({
   baseURL: process.env.REACT_APP_ENDPOINT,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': localStorage.session
+    // @ts-ignore
+    //'Authorization': 'Bearer '+localStorage.session
   }
 });
 
@@ -15,18 +15,20 @@ export const createUser = (params) => {
   return fetcher.post("/users", params).then(res => res.data);
 };
 
-export const login = (email, password) => {
-  return fetcher.post("/login", {
-    email,
+export const login = (identifier, password) => {
+  return fetcher.post("/auth/local", {
+    identifier,
     password
   }).then(res => {
-    localStorage.session = res.data.auth;
-    fetcher.defaults.headers.common['Authorization'] = res.data.auth;
-    return decode(res.data.auth);
+    // @ts-ignore
+    localStorage.session = res.data.jwt;
+    fetcher.defaults.headers.common['Authorization'] = 'Bearer '+res.data.jwt;
+    return decode(res.data.jwt);
   });
 };
 
 export const logout = () => {
+  // @ts-ignore
   delete localStorage.session;
   return Promise.resolve();
 };
@@ -38,19 +40,26 @@ export const fetchCurrentUser = () => {
 };
 
 export const fetchUserSurveys = (user) => {
-  return fetcher.get(`/users/${user.id}/surveys`).then(res => res.data);
+  return fetcher.get(`/surveys?user._id=${user.id}`).then(res => res.data);
 };
 
 export const fetchResults = (surveyId) => {
-  return fetcher.get(`/surveys/${surveyId}/results`).then(res => res.data);
+  return fetcher.get(`/results?survey=${surveyId}`).then(res => res.data);
 };
 
 export const createSurvey = (userId, initSurvey) => {
-  return fetcher.post(`/users/${userId}/surveys`, initSurvey).then(res => res.data);
+  initSurvey.user={
+    _id:userId
+  };
+  return fetcher.post(`/surveys`, initSurvey).then(res => res.data);
 };
 
 export const saveResult = (surveyId, result) => {
-  return fetcher.post(`/surveys/${surveyId}/results`, result);
+  let body = {
+    survey: surveyId,
+    result: result
+  }
+  return fetcher.post(`/results`, body);
 };
 
 
