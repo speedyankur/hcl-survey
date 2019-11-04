@@ -22,7 +22,11 @@ export default function routes(store) {
     const state = store.getState();
     const nextPath = nextState.location.pathname;
     console.log(nextPath);
-    if (!state.session.user && skipAuthPaths.indexOf(nextPath) === -1) {
+    if(nextPath.indexOf('/surveys') !== -1){
+      dispatchHomePage(nextState, replace, store);
+      next();
+    }
+    else if (!state.session.user && skipAuthPaths.indexOf(nextPath) === -1) {
       store.dispatch(fetchCurrentUserRequest()).then(res => {
         store.dispatch(fetchCurrentUserRequestSuccess(res));
         dispatchHomePage(nextState, replace, store);

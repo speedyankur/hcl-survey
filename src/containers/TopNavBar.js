@@ -39,7 +39,7 @@ class TopNavBar extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <a href={pathname}>
-                React Survey
+                HCL Survey
               </a>
             </Navbar.Brand>
             <Navbar.Toggle />
