@@ -21,8 +21,9 @@ class MultiChoice extends React.Component<Props> {
           {options.map((option, index) => {
             return (
                 <div key={index} className="radio">
-                  <label>
-                    <Field component="input" type="radio" name={_id} value={option._id} />
+                  <Field id={`${index}-multi-option`} component="input" type="radio" name={_id} value={option._id} />
+                  <label htmlFor={`${index}-multi-option`}>
+                    
                     {option.content}
                   </label>
                 </div>

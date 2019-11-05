@@ -1,0 +1,28 @@
+.btn-primary{
+    background-color: #0e68aa;
+    border-radius: 0;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+.navbar-default .navbar-nav > li > a:hover{
+    color: #e9eaed;
+}
+.Survey .radio{
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 50px;    
+}
+.Survey .radio label{
+    padding-left: 0;
+    font-size: 100px
+}
+
+.Survey .radio input[type="radio"]{
+    visibility: hidden;
+}
+.Survey .radio input[type="radio"]:checked + label{
+    border: 2px solid #0e68aa;
+}

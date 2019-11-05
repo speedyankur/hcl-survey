@@ -38,8 +38,8 @@ class TopNavBar extends Component {
         <Navbar className="TopNavBar">
           <Navbar.Header>
             <Navbar.Brand>
-              <a href={pathname}>
-                HCL Survey
+              <a href={pathname} className="logo">
+                
               </a>
             </Navbar.Brand>
             <Navbar.Toggle />
