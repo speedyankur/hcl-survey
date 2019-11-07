@@ -21,7 +21,8 @@ class RegisterPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isRegisterSuccess: state.register.isSuccess
+    isRegisterSuccess: state.register.isSuccess,
+    errors: state.register.errors?state.register.errors:[]
   };
 };
 

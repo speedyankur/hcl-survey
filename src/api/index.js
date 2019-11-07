@@ -12,7 +12,7 @@ const fetcher = axios.create({
 });
 
 export const createUser = (params) => {
-  return fetcher.post("/users", params).then(res => res.data);
+  return fetcher.post("/auth/local/register", params).then(res => res.data);
 };
 
 export const login = (identifier, password) => {

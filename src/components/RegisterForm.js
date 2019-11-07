@@ -17,9 +17,16 @@ type Props = {
 class RegisterForm extends React.Component<Props> {
   render() {
     let { isSubmitting, handleSubmit, errors, touched } = this.props;
+    console.log("register component",errors)
     return (
         <form onSubmit={handleSubmit}>
           <legend>Register</legend>
+          {errors.message ?
+              <div>
+              {errors.message[0].messages.map((value, index) => {
+                return <div className="alert alert-danger" key={index}>{value.id}</div>
+              })}</div>
+             :<div />}          
           <div className="form-group">
             <label htmlFor="">User Name</label>
             <Field
