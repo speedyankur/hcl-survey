@@ -40,7 +40,8 @@ export const fetchCurrentUser = () => {
 };
 
 export const fetchUserSurveys = (user) => {
-  return fetcher.get(`/surveys?user._id=${user.id}`).then(res => res.data);
+  let id = user.id?user.id:user._id
+  return fetcher.get(`/surveys?user._id=${id}`).then(res => res.data);
 };
 
 export const fetchResults = (surveyId) => {
