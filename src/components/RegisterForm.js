@@ -46,13 +46,6 @@ class RegisterForm extends React.Component<Props> {
                 component={renderInput}
                 type="password"/>
           </div>
-          <div className="form-group">
-            <label htmlFor="">Confirm Password</label>
-            <Field
-                name="passwordConfirm"
-                component={renderInput}
-                type="password"/>
-          </div>
           {isSubmitting ?
               <button className="btn btn-primary" type="submit" disabled>Loading...</button> :
               <button className="btn btn-primary" type="submit">Submit</button>}
