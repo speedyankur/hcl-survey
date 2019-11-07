@@ -22,10 +22,7 @@ class RegisterForm extends React.Component<Props> {
         <form onSubmit={handleSubmit}>
           <legend>Register</legend>
           {errors.message ?
-              <div>
-              {errors.message[0].messages.map((value, index) => {
-                return <div className="alert alert-danger" key={index}>{value.id}</div>
-              })}</div>
+               <div className="alert alert-danger" >{errors.message}</div>
              :<div />}          
           <div className="form-group">
             <label htmlFor="">User Name</label>
